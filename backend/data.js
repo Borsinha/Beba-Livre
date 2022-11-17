@@ -5,7 +5,7 @@ const data = {
             onSale: 'true',
             slug: 'jack-single-750ml',
             price: 300,
-            type: 'ten-Whisky',
+            type: 'Tenneesse Single Barrel Whisky',
             image: '/images/jack-single-750ml.jpg'
         },
         {
@@ -13,7 +13,7 @@ const data = {
             onSale: 'true',
             slug: 'old-parr-12-1l',
             price: 200,
-            type: 'blend-whisky',
+            type: 'Scotch Blended Whisky',
             image: '/images/old-parr-12-1l.jpg'
         },
         {
@@ -21,7 +21,7 @@ const data = {
             onSale: 'true',
             slug: 'buchanans-deluxe-12-1l',
             price: 200,
-            type: 'blend-whisky',
+            type: 'Scotch Blended Whisky',
             image: '/images/buchanans-12-1l.jpg'
         },
         {
@@ -29,7 +29,7 @@ const data = {
             onSale: 'true',
             slug: 'singleton-12-750ml',
             price: 180,
-            type: 'single-whisky',
+            type: 'Scotch Single Malt Whisky',
             image: '/images/singleton-12-750ml.png'
         },
         {
@@ -37,7 +37,7 @@ const data = {
             onSale: 'true',
             slug: 'black-label-12-1l',
             price: 150,
-            type: 'whisky',
+            type: 'Scotch Blended Whisky',
             image: '/images/black-label-12-1l.jpg'
         },
     ],

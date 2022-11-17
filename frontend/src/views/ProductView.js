@@ -1,0 +1,48 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import ListGroup from "react-bootstrap/ListGroup";
+
+function Product() {
+    const params = useParams();
+    const { slug } = params;
+
+    //get data from api/server
+    const [product, setProduct] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios.get(`/api/products/slug/${slug}`);
+            setProduct(result.data);
+        };
+        fetchData();
+    }, []);
+
+    console.log(product);
+
+    return (
+        <div>
+            <Row>
+                <Col md="5">
+                    <img className="img-large" src={product.image} alt={product.name} />
+                </Col>
+                <Col md="3">
+                    <ListGroup variant="flush">
+                        <ListGroup.Item>
+                            <h1>{product.name}</h1>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            Preço: R$ {product.price}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            {product.type}
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Col>
+                <Col md="3"></Col>
+            </Row>
+        </div>
+    );
+}
+export default Product;

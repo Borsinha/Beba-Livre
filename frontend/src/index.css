@@ -7,23 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  background-color: rgb(21, 25, 29);
-  padding: 1rem;
-}
-
-header a {
-  color: goldenrod;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-header a:hover{
-  color: goldenrod;
-  font-weight: bold;
-  text-decoration: none;
-}
-
 main{
   padding: 1rem;
 }
@@ -46,4 +29,8 @@ main{
 
 .product-info {
   padding: 1rem;
+}
+
+.img-large { 
+  max-width: 100%;
 }
