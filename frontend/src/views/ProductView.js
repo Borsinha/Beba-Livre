@@ -5,6 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
+import { Helmet } from 'react-helmet-async';
+
 
 function Product() {
     const params = useParams();
@@ -22,8 +24,14 @@ function Product() {
 
     console.log(product);
 
+
+
+
     return (
         <div>
+            <Helmet>
+                <title>{product.name}</title>
+            </Helmet>
             <Row>
                 <Col md="5">
                     <img className="img-large" src={product.image} alt={product.name} />
@@ -31,7 +39,7 @@ function Product() {
                 <Col md="3">
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                                <h1>{product.name}</h1>
+                            <h1>{product.name}</h1>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Preço: R$ {product.price}

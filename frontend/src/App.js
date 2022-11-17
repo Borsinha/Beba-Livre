@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
 import HomeView from "./views/HomeView";
+import LoginView from './views/LoginView';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Routes>
               <Route path="/product/:slug" element={<ProductView />} />
               <Route path="/" element={<HomeView />} />
+              <Route path="/login" element={<LoginView />} />
             </Routes>
           </Container>
         </main>

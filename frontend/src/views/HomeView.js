@@ -3,6 +3,7 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Product from "../components/Product";
+import { Helmet } from 'react-helmet-async';
 
 
 function HomeView() {
@@ -24,6 +25,9 @@ function HomeView() {
     //list products
     return (
         <div>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
             <h1>Lista de Produtos</h1>
             <div className="products">
                 <Row sm={6} md={4} lg={3} className="mb-3">
