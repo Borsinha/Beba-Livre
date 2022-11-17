@@ -38,3 +38,10 @@ main{
 .small-container {
   max-width: 600px;
 }
+
+.out-link {
+  color: rgb(255, 247, 131);
+}
+.out-link Link{
+  color: rgb(243, 111, 111);
+}

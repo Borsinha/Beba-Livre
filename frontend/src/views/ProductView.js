@@ -20,7 +20,7 @@ function Product() {
             setProduct(result.data);
         };
         fetchData();
-    }, []);
+    }, [slug]);
 
     console.log(product);
 
