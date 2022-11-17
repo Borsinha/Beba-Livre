@@ -4,7 +4,13 @@ import data from "./data.js";
 const app = express();
 
 app.get('/api/products', (req, res) => {
-    res.send(data.products)
+    let products = data.products;
+    products.forEach(element => {
+        if(element.onSale == 0){
+            products.pop(element);
+        }
+    });
+    res.send(products)
 });
 
 app.get('/api/products/slug/:slug', (req, res) => {

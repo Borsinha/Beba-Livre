@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 
 function Product() {
@@ -30,13 +31,22 @@ function Product() {
                 <Col md="3">
                     <ListGroup variant="flush">
                         <ListGroup.Item>
-                            <h1>{product.name}</h1>
+                                <h1>{product.name}</h1>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             Preço: R$ {product.price}
                         </ListGroup.Item>
                         <ListGroup.Item>
                             {product.type}
+                        </ListGroup.Item>
+                    </ListGroup>
+                    <ListGroup>
+                        <ListGroup.Item>
+                            <div>
+                                <Button variant="warning">
+                                    Carrinho
+                                </Button>
+                            </div>
                         </ListGroup.Item>
                     </ListGroup>
                 </Col>

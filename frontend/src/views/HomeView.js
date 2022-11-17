@@ -19,6 +19,8 @@ function HomeView() {
 
     console.log(products);
 
+
+
     //list products
     return (
         <div>
@@ -27,7 +29,7 @@ function HomeView() {
                 <Row sm={6} md={4} lg={3} className="mb-3">
                     {products.map((product) => (
                         <Col key={product.slug}>
-                            <Product product={product}></Product>
+                                <Product product={product}></Product>
                         </Col>
                     ))} 
                 </Row>
