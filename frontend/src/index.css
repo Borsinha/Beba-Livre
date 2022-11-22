@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-main{
+main {
   padding: 1rem;
 }
 
@@ -31,7 +31,7 @@ main{
   padding: 1rem;
 }
 
-.img-large { 
+.img-large {
   max-width: 100%;
 }
 
@@ -39,9 +39,10 @@ main{
   max-width: 600px;
 }
 
-.out-link {
-  color: rgb(255, 247, 131);
+div.fade.in.modal {
+  display: flex !important;
 }
-.out-link Link{
-  color: rgb(243, 111, 111);
+
+.modal-dialog {
+  margin: auto;
 }

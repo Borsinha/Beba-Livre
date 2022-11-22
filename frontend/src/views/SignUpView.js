@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
-import Axios from 'axios';
+import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,35 +17,6 @@ export default function SignUpView() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  //   const submit = async (e) => {
-  //     e.preventDefault();
-  //     console.log(
-  //       'NAME: ' +
-  //         name +
-  //         ' USER: ' +
-  //         user +
-  //         ' PASSWORD: ' +
-  //         password +
-  //         ' CPASSWORD: ' +
-  //         confirmPassword
-  //     );
-  //     if (password !== confirmPassword) {
-  //       toast.error('Passwords do not match');
-  //       return;
-  //     }
-  //     try {
-  //       const { data } = await Axios.post('/api/users/signup', {
-  //         name,
-  //         user,
-  //         password,
-  //       });
-  //       localStorage.setItem('userInfo', JSON.stringify(data));
-  //       navigate('/');
-  //     } catch (error) {
-  //       alert('Usuário ou senha incorretos!');
-  //     }
-  //   };
-
   const submit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -53,7 +24,7 @@ export default function SignUpView() {
       return;
     }
     try {
-      const { data } = await Axios.post('/api/users/signup', {
+      const { data } = await axios.post('/api/users/signup', {
         name,
         user,
         password,
