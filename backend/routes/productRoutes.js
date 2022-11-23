@@ -1,5 +1,6 @@
 import express from 'express';
 import Product from '../models/productModel.js';
+import expressAsyncHandler from 'express-async-handler';
 
 const productRouter = express.Router();
 
@@ -18,22 +19,20 @@ productRouter.get('/:id', async (req, res) => {
   res.send(product);
 });
 
-// userRouter.post(
-//     '/signup',
-//     expressAsyncHandler(async (req, res) => {
-//       const newUser = new User({
-//         name: req.body.name,
-//         user: req.body.user,
-//         password: bcrypt.hashSync(req.body.password),
-//       });
-//       const user = await newUser.save();
-//       res.send({
-//         _id: user._id,
-//         name: user.name,
-//         user: user.user,
-//         token: createToken(user),
-//       });
-//     })
-//   );
+productRouter.post(
+  '/store',
+  expressAsyncHandler(async (req, res) => {
+    const newProduct = new Product({
+      name: req.body.name,
+      onSale: req.body.onSale,
+      slug: req.body.slug,
+      price: req.body.price,
+      type: req.body.type,
+      image: '/images/jack-single-750ml.jpg',
+      user: req.body.user,
+    });
+    const product = await newProduct.save();
+  })
+);
 
 export default productRouter;

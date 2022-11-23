@@ -13,6 +13,7 @@ import {
   faAdd,
 } from '@fortawesome/free-solid-svg-icons';
 import Container from 'react-bootstrap/esm/Container';
+import { Link } from 'react-router-dom';
 
 export default function SignUpView() {
   //const navigate = useNavigate();
@@ -33,9 +34,11 @@ export default function SignUpView() {
           <tr>
             <th>
               {' '}
-              <Button variant="light">
-                <FontAwesomeIcon icon={faAdd} /> Adicionar
-              </Button>
+              <Link to="/products/store">
+                <Button variant="light">
+                  <FontAwesomeIcon icon={faAdd} /> Adicionar
+                </Button>
+              </Link>
             </th>
             <th></th>
             <th></th>
