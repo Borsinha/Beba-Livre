@@ -27,24 +27,6 @@ export default function Store() {
     { name: 'Não', value: '0' },
   ];
 
-  const submit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post('/api/products/store', {
-        name,
-        onSale,
-        slug,
-        price,
-        type,
-        image,
-        user,
-      });
-      navigate('/');
-    } catch (err) {
-      toast.error(getError(err));
-    }
-  };
-
   useEffect(() => {
     setUser(userInfo._id);
   });
@@ -53,6 +35,25 @@ export default function Store() {
     setImage(e.target.files[0]);
     console.log(e.target.files[0]);
   }
+
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await axios.post('/api/products/store', {
+        name,
+        onSale,
+        slug,
+        price,
+        type,
+        image,
+        user,
+      });
+      toast(data);
+      navigate('/');
+    } catch (error) {
+      toast.error(getError(error));
+    }
+  };
 
   return (
     <Container className="small-container">
@@ -117,14 +118,12 @@ export default function Store() {
             <Form.Control type="file" required onChange={handleImage} />
           </Form.Group>
         </Form.Group>
-        <Form.Group>
-          <div className="d-flex gap-2">
-            <Button type="submit">Enviar</Button>
-            <Link to="/products/index">
-              <Button variant="secondary">Cancelar</Button>
-            </Link>
-          </div>
-        </Form.Group>
+        <div className="d-flex gap-2">
+          <Button type="submit">Enviar</Button>
+          <Link to="/products/index">
+            <Button variant="secondary">Cancelar</Button>
+          </Link>
+        </div>
       </Form>
     </Container>
   );

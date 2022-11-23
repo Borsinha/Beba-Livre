@@ -31,7 +31,23 @@ productRouter.post(
       image: '/images/jack-single-750ml.jpg',
       user: req.body.user,
     });
-    const product = await newProduct.save();
+    await newProduct.save();
+    res.send('Produto cadastrado com sucesso!');
+  })
+);
+
+productRouter.put(
+  '/update/:id',
+  expressAsyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    product.name = req.body.name;
+    product.onSale = req.body.onSale;
+    product.slug = req.body.slug;
+    product.price = req.body.price;
+    product.type = req.body.type;
+    await product.save();
+    res.send({ message: 'Produto atualizado com sucesso!' });
   })
 );
 

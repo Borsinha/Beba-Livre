@@ -2,11 +2,13 @@ import bcrypt from 'bcryptjs';
 const data = {
   users: [
     {
+      //_id: '1',
       name: 'Vitor',
       user: 'admin',
       password: bcrypt.hashSync('332200'),
     },
     {
+      //_id: '2',
       name: 'Borsinha',
       user: 'admin2',
       password: bcrypt.hashSync('002233'),
@@ -22,7 +24,7 @@ const data = {
       price: 300,
       type: 'Tenneesse Single Barrel Whisky',
       image: '/images/jack-single-750ml.jpg',
-      user: '637da731358c3abe591ade59',
+      user: '1',
     },
     {
       //_id: '1',
@@ -32,7 +34,7 @@ const data = {
       price: 200,
       type: 'Scotch Blended Whisky',
       image: '/images/old-parr-12-1l.jpg',
-      user: '637da731358c3abe591ade59',
+      user: '1',
     },
     {
       //_id: '2',
@@ -42,7 +44,7 @@ const data = {
       price: 200,
       type: 'Scotch Blended Whisky',
       image: '/images/buchanans-12-1l.jpg',
-      user: '637da731358c3abe591ade59',
+      user: '1',
     },
     {
       //_id: '3',
@@ -52,7 +54,7 @@ const data = {
       price: 180,
       type: 'Scotch Single Malt Whisky',
       image: '/images/singleton-12-750ml.png',
-      user: '637da731358c3abe591ade59',
+      user: '1',
     },
     {
       //_id: '4',
@@ -62,7 +64,7 @@ const data = {
       price: 150,
       type: 'Scotch Blended Whisky',
       image: '/images/black-label-12-1l.jpg',
-      user: '637da731358c3abe591ade59',
+      user: '2',
     },
   ],
 };

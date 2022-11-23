@@ -21,8 +21,6 @@ function Product() {
     fetchData();
   }, [slug]);
 
-  console.log(product);
-
   return (
     <div>
       <Helmet>

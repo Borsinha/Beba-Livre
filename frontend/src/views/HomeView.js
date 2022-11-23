@@ -17,8 +17,6 @@ function HomeView() {
     fetchData();
   }, []);
 
-  console.log(products);
-
   //list products
   return (
     <div>

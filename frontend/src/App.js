@@ -10,6 +10,7 @@ import LoginView from './views/LoginView';
 import SignUpView from './views/SignUpView';
 import ProductsIndex from './views/products/Index';
 import ProductsStore from './views/products/Store';
+import ProductsUpdate from './views/products/Update';
 import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -37,7 +38,6 @@ function App() {
                 <Navbar.Brand> Drink Free </Navbar.Brand>
               </LinkContainer>
               <Nav>
-                {console.log(userInfo)}
                 {userInfo ? (
                   <NavDropdown title={userInfo.name} id="admin-nav-dropdown">
                     <LinkContainer to="/products/Index">
@@ -65,6 +65,10 @@ function App() {
               <Route path="/signup" element={<SignUpView />} />
               <Route path="/products/index" element={<ProductsIndex />} />
               <Route path="/products/store" element={<ProductsStore />} />
+              <Route
+                path="/product/update/:productId"
+                element={<ProductsUpdate />}
+              />
             </Routes>
           </Container>
         </main>

@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 
 export default function SignUpView() {
   //const navigate = useNavigate();
-
+  const user = JSON.parse(localStorage.getItem('userInfo'));
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -53,9 +53,17 @@ export default function SignUpView() {
             <th>Acões</th>
           </tr>
         </thead>
+        {/* {products
+            .filter((product) => product.user === user._id)
+            .map((filteredProduct) => (
+              <Col key={filteredProduct.slug}>
+                <Product product={filteredProduct}></Product>
+              </Col>
+            ))} */}
         <tbody>
-          {products.map((value, index) => {
-            return (
+          {products
+            .filter((product) => product.user === user._id)
+            .map((value, index) => (
               <tr key={index}>
                 <td>{value.name}</td>
                 <td>R${value.price}</td>
@@ -72,16 +80,17 @@ export default function SignUpView() {
                   )}
                 </td>
                 <td>
-                  <Button variant="warning">
-                    <FontAwesomeIcon icon={faEdit} />
-                  </Button>{' '}
+                  <Link to={`/product/update/${value._id}`}>
+                    <Button variant="warning">
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Button>{' '}
+                  </Link>
                   <Button variant="danger">
                     <FontAwesomeIcon icon={faTrash} />
                   </Button>
                 </td>
               </tr>
-            );
-          })}
+            ))}
         </tbody>
       </Table>
     </Container>
