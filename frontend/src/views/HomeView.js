@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet-async';
 
 function HomeView() {
   //get data from api/server
-  const user = JSON.parse(localStorage.getItem('userInfo'));
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +26,11 @@ function HomeView() {
       <div className="products">
         <Row sm={6} md={4} lg={3} className="mb-3">
           {products
-            .filter((product) => product.user === user._id)
+            .filter(
+              (product) =>
+                product.user ===
+                JSON.parse(localStorage.getItem('userInfo'))._id
+            )
             .map((filteredProduct) => (
               <Col key={filteredProduct.slug}>
                 <Product product={filteredProduct}></Product>

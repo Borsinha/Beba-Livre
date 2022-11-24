@@ -17,14 +17,22 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function App() {
   const [userInfo, setUserInfo] = useState([]);
+  if (!localStorage.getItem('userInfo')) {
+    localStorage.setItem('userInfo', JSON.stringify({ _id: 'off' }));
+  }
 
   useEffect(() => {
     const result = JSON.parse(localStorage.getItem('userInfo'));
     setUserInfo(result);
   }, []);
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
+    refreshPage();
   };
 
   return (
@@ -38,7 +46,7 @@ function App() {
                 <Navbar.Brand> Drink Free </Navbar.Brand>
               </LinkContainer>
               <Nav>
-                {userInfo ? (
+                {userInfo._id !== 'off' ? (
                   <NavDropdown title={userInfo.name} id="admin-nav-dropdown">
                     <LinkContainer to="/products/Index">
                       <NavDropdown.Item>Produtos</NavDropdown.Item>

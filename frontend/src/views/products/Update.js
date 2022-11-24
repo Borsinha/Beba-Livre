@@ -15,11 +15,9 @@ export default function Update() {
   const params = useParams();
   const { productId } = params;
 
-  var [oldProduct, setOldProduct] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`/api/products/${productId}`);
-      setOldProduct(result.data);
+      await axios.get(`/api/products/${productId}`);
     };
     fetchData();
   }, [productId]);
@@ -51,7 +49,7 @@ export default function Update() {
         image,
       });
       toast(data);
-      navigate('/');
+      navigate('/products/index');
     } catch (error) {
       toast.error(getError(error));
     }

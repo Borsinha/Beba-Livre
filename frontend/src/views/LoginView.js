@@ -8,20 +8,28 @@ import { useState } from 'react';
 
 export default function LoginView() {
   const navigate = useNavigate();
-  if (localStorage.getItem('userInfo')) {
+  console.log(JSON.parse(localStorage.getItem('userInfo'))._id);
+  if (JSON.parse(localStorage.getItem('userInfo'))._id !== 'off') {
     navigate('/');
   }
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   const login = async (e) => {
     e.preventDefault();
+    localStorage.removeItem('userInfo');
     try {
       const { data } = await axios.post('/api/users/login', {
         user,
         password,
       });
       localStorage.setItem('userInfo', JSON.stringify(data));
+      console.log(JSON.parse(localStorage.getItem('userInfo'))._id);
+      refreshPage();
       navigate('/');
     } catch (error) {
       alert('Usuário ou senha incorretos!');

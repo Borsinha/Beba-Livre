@@ -14,8 +14,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { getError } from '../../utils';
 
-export default function SignUpView() {
+export default function Index() {
   //const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('userInfo'));
   const [products, setProducts] = useState([]);
@@ -26,6 +28,21 @@ export default function SignUpView() {
     };
     fetchData();
   }, []);
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
+  const deleteHandler = async (productId) => {
+    console.log(productId);
+    try {
+      await axios.delete(`/api/products/${productId}`);
+      toast('Produto excluido com sucesso!');
+      refreshPage();
+    } catch (error) {
+      toast.error(getError(error));
+    }
+  };
 
   return (
     <Container>
@@ -53,13 +70,6 @@ export default function SignUpView() {
             <th>Acões</th>
           </tr>
         </thead>
-        {/* {products
-            .filter((product) => product.user === user._id)
-            .map((filteredProduct) => (
-              <Col key={filteredProduct.slug}>
-                <Product product={filteredProduct}></Product>
-              </Col>
-            ))} */}
         <tbody>
           {products
             .filter((product) => product.user === user._id)
@@ -85,7 +95,10 @@ export default function SignUpView() {
                       <FontAwesomeIcon icon={faEdit} />
                     </Button>{' '}
                   </Link>
-                  <Button variant="danger">
+                  <Button
+                    onClick={() => deleteHandler(value._id)}
+                    variant="danger"
+                  >
                     <FontAwesomeIcon icon={faTrash} />
                   </Button>
                 </td>

@@ -22,6 +22,8 @@ export default function Store() {
   const [type, setType] = useState('');
   const [image, setImage] = useState('');
 
+  const [preview, setPreview] = useState('');
+
   const radios = [
     { name: 'Sim', value: '1' },
     { name: 'Não', value: '0' },
@@ -31,13 +33,24 @@ export default function Store() {
     setUser(userInfo._id);
   });
 
-  function handleImage(e) {
-    setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
-  }
+  const handleSelectedImage = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  };
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
+  };
 
   const submit = async (e) => {
+    console.log('submitting');
     e.preventDefault();
+    if (!preview) return;
+    setImage(preview);
     try {
       const data = await axios.post('/api/products/store', {
         name,
@@ -54,6 +67,16 @@ export default function Store() {
       toast.error(getError(error));
     }
   };
+
+  // function handleImage() {
+  //   console.log(image);
+  //   const formData = new FormData();
+  //   formData.append('file', image);
+  //   formData.append('upload_preset', 'frkyaww8');
+  //   axios
+  //     .post('https://api.cloudinary.com/v1_1/dlcp9fdmt/image/upload', formData)
+  //     .then((response) => console.log(response));
+  // }
 
   return (
     <Container className="small-container">
@@ -115,7 +138,18 @@ export default function Store() {
         <Form.Group className="d-flex gap-2">
           <Form.Group className="mb-3" controlId="image">
             <Form.Label>Upload Image</Form.Label>
-            <Form.Control type="file" required onChange={handleImage} />
+            <Form.Control type="file" required onChange={handleSelectedImage} />
+          </Form.Group>
+          <Form.Group className="d-flex gap-2">
+            <Form.Label>
+              {preview && (
+                <img
+                  src={preview}
+                  alt="select image"
+                  style={{ paddingLeft: '100px', height: '200px' }}
+                ></img>
+              )}
+            </Form.Label>
           </Form.Group>
         </Form.Group>
         <div className="d-flex gap-2">
