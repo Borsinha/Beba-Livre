@@ -30,12 +30,25 @@ export default function Update() {
   const [slug, setSlug] = useState('');
   const [price, setPrice] = useState('');
   const [type, setType] = useState('');
-  const [image, setImage] = useState('');
+  const [preview, setPreview] = useState('');
 
   const radios = [
     { name: 'Sim', value: '1' },
     { name: 'Não', value: '0' },
   ];
+
+  const handleSelectedImage = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  };
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreview(reader.result);
+    };
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -46,7 +59,7 @@ export default function Update() {
         slug,
         price,
         type,
-        image,
+        preview,
       });
       toast(data);
       navigate('/products/index');
@@ -58,11 +71,6 @@ export default function Update() {
   useEffect(() => {
     setUser(userInfo._id);
   });
-
-  function handleImage(e) {
-    setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
-  }
 
   return (
     <Container className="small-container">
@@ -124,7 +132,7 @@ export default function Update() {
         <Form.Group className="d-flex gap-2">
           <Form.Group className="mb-3" controlId="image">
             <Form.Label>Upload Image</Form.Label>
-            <Form.Control type="file" required onChange={handleImage} />
+            <Form.Control type="file" required onChange={handleSelectedImage} />
           </Form.Group>
         </Form.Group>
         <Form.Group>

@@ -20,8 +20,6 @@ export default function Store() {
   const [slug, setSlug] = useState('');
   const [price, setPrice] = useState('');
   const [type, setType] = useState('');
-  const [image, setImage] = useState('');
-
   const [preview, setPreview] = useState('');
 
   const radios = [
@@ -49,8 +47,6 @@ export default function Store() {
   const submit = async (e) => {
     console.log('submitting');
     e.preventDefault();
-    if (!preview) return;
-    setImage(preview);
     try {
       const data = await axios.post('/api/products/store', {
         name,
@@ -58,7 +54,7 @@ export default function Store() {
         slug,
         price,
         type,
-        image,
+        preview,
         user,
       });
       toast(data);
@@ -67,16 +63,6 @@ export default function Store() {
       toast.error(getError(error));
     }
   };
-
-  // function handleImage() {
-  //   console.log(image);
-  //   const formData = new FormData();
-  //   formData.append('file', image);
-  //   formData.append('upload_preset', 'frkyaww8');
-  //   axios
-  //     .post('https://api.cloudinary.com/v1_1/dlcp9fdmt/image/upload', formData)
-  //     .then((response) => console.log(response));
-  // }
 
   return (
     <Container className="small-container">
